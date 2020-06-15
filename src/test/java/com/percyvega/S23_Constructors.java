@@ -7,7 +7,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 @Log4j2
-public class S23_ReflectionForConstructors {
+public class S23_Constructors {
 
     @Test
     void change_private_constructor_to_public_constructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
