@@ -30,7 +30,9 @@ public class S26_Fields {
         assertThat(fields[1].getType()).isEqualTo(String.class);
         assertThat(fields[1].getName()).isEqualTo("species");
 
-        assertThat(Arrays.stream(fields).map(Field::getName)).containsExactlyInAnyOrder("lastname", "species");
+        assertThat(Arrays.stream(fields)
+                .map(Field::getName))
+                .containsExactlyInAnyOrder("lastname", "species");
     }
 
     @Test
