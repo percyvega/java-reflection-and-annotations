@@ -21,8 +21,8 @@ public class S23_Constructors {
                 .map(Constructor::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList.stream().anyMatch(s -> s.equals("private com.percyvega.S23_Constructors$MyClass()"))).isTrue();
-        assertThat(stringList.stream().anyMatch(s -> s.equals("public com.percyvega.S23_Constructors$MyClass(java.lang.String)"))).isTrue();
+        assertThat(stringList).contains("private com.percyvega.S23_Constructors$MyClass()");
+        assertThat(stringList).contains("public com.percyvega.S23_Constructors$MyClass(java.lang.String)");
 
         assertThat(stringList).hasSize(2);
     }
@@ -34,7 +34,7 @@ public class S23_Constructors {
                 .map(Constructor::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList.stream().anyMatch(s -> s.equals("public com.percyvega.S23_Constructors$MyClass(java.lang.String)"))).isTrue();
+        assertThat(stringList).contains("public com.percyvega.S23_Constructors$MyClass(java.lang.String)");
 
         assertThat(stringList).hasSize(1);
     }

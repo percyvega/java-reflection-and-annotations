@@ -19,13 +19,14 @@ public class S24_ClassObject {
     }
 
     @Test
-    void obtainSuperclassAndInterfaces() throws ClassNotFoundException {
-        Class<?> aClass = Class.forName(MyClass.class.getName());
-        Class<?> aClassSuperclass = aClass.getSuperclass();
-        Class<?>[] interfaces = aClass.getInterfaces();
+    void obtainSuperclassAndInterfaces() {
+        Class<?> aClassSuperclass = MyClass.class.getSuperclass();
+        assertThat(aClassSuperclass.getName()).isEqualTo("java.lang.Thread");
 
-        assertThat(aClassSuperclass.getSimpleName()).isEqualTo("Thread");
+        Class<?>[] interfaces = MyClass.class.getInterfaces();
         assertThat(interfaces.length).isEqualTo(2);
+        assertThat(interfaces[0].getName()).isEqualTo("java.lang.Runnable");
+        assertThat(interfaces[1].getName()).isEqualTo("java.lang.Cloneable");
     }
 
     class MyClass extends Thread implements Runnable, Cloneable {
