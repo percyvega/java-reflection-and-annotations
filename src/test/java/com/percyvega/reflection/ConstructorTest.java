@@ -1,4 +1,4 @@
-package com.percyvega;
+package com.percyvega.reflection;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log4j2
-public class S23_Constructors {
+public class ConstructorTest {
 
     @Test
     void obtain_public_and_private_direct_constructors() {
@@ -21,8 +21,8 @@ public class S23_Constructors {
                 .map(Constructor::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).contains("private com.percyvega.S23_Constructors$MyClass()");
-        assertThat(stringList).contains("public com.percyvega.S23_Constructors$MyClass(java.lang.String)");
+        assertThat(stringList).contains("private com.percyvega.reflection.ConstructorTest$MyClass()");
+        assertThat(stringList).contains("public com.percyvega.reflection.ConstructorTest$MyClass(java.lang.String)");
 
         assertThat(stringList).hasSize(2);
     }
@@ -34,7 +34,7 @@ public class S23_Constructors {
                 .map(Constructor::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).contains("public com.percyvega.S23_Constructors$MyClass(java.lang.String)");
+        assertThat(stringList).contains("public com.percyvega.reflection.ConstructorTest$MyClass(java.lang.String)");
 
         assertThat(stringList).hasSize(1);
     }
@@ -46,7 +46,7 @@ public class S23_Constructors {
         MyClass myClass = (MyClass) declaredConstructor.newInstance();
 
         assertThat(myClass).isInstanceOf(MyClass.class);
-        assertThat(myClass.getClass().getName()).isEqualTo("com.percyvega.S23_Constructors$MyClass");
+        assertThat(myClass.getClass().getName()).isEqualTo("com.percyvega.reflection.ConstructorTest$MyClass");
     }
 
     // This inner class has to be static because it's a field of the outer class

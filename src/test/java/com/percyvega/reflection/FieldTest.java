@@ -1,4 +1,4 @@
-package com.percyvega;
+package com.percyvega.reflection;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log4j2
-public class S26_Fields {
+public class FieldTest {
 
     MyHuman myHumanInstance;
 

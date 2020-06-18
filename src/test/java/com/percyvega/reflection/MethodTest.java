@@ -1,4 +1,4 @@
-package com.percyvega;
+package com.percyvega.reflection;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log4j2
-public class S27_Methods {
+public class MethodTest {
 
     @Test
     void obtain_public_and_private_direct_class_methods() {
@@ -23,11 +23,11 @@ public class S27_Methods {
                 .map(Method::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).contains("static int com.percyvega.S27_Methods$MyPet.access$000(com.percyvega.S27_Methods$MyPet)");
-        assertThat(stringList).contains("public void com.percyvega.S27_Methods$MyPet.setPetId(int)");
-        assertThat(stringList).contains("public int com.percyvega.S27_Methods$MyPet.getMaxPetEyesCount()");
-        assertThat(stringList).contains("public static java.lang.String com.percyvega.S27_Methods$MyPet.getFavoritePet()");
-        assertThat(stringList).contains("private int com.percyvega.S27_Methods$MyPet.getPetId()");
+        assertThat(stringList).contains("static int com.percyvega.reflection.MethodTest$MyPet.access$000(com.percyvega.reflection.MethodTest$MyPet)");
+        assertThat(stringList).contains("public void com.percyvega.reflection.MethodTest$MyPet.setPetId(int)");
+        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyPet.getMaxPetEyesCount()");
+        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyPet.getFavoritePet()");
+        assertThat(stringList).contains("private int com.percyvega.reflection.MethodTest$MyPet.getPetId()");
 
         assertThat(stringList).hasSize(5);
     }
@@ -42,13 +42,13 @@ public class S27_Methods {
 
         assertThat(stringList).hasSize(14);
 
-        assertThat(stringList).doesNotContain("public void com.percyvega.S27_Methods$MyPet.getPetId()"); // not found because it is not public
+        assertThat(stringList).doesNotContain("public void com.percyvega.reflection.MethodTest$MyPet.getPetId()"); // not found because it is not public
 
-        assertThat(stringList).contains("public void com.percyvega.S27_Methods$MyPet.setPetId(int)");
-        assertThat(stringList).contains("public int com.percyvega.S27_Methods$MyPet.getMaxPetEyesCount()");
-        assertThat(stringList).contains("public static java.lang.String com.percyvega.S27_Methods$MyPet.getFavoritePet()");
-        assertThat(stringList).contains("public int com.percyvega.S27_Methods$MyAnimal.getMaxAnimalEyesCount()");
-        assertThat(stringList).contains("public static java.lang.String com.percyvega.S27_Methods$MyAnimal.getFavoriteAnimal()");
+        assertThat(stringList).contains("public void com.percyvega.reflection.MethodTest$MyPet.setPetId(int)");
+        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyPet.getMaxPetEyesCount()");
+        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyPet.getFavoritePet()");
+        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyAnimal.getMaxAnimalEyesCount()");
+        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyAnimal.getFavoriteAnimal()");
         assertThat(stringList).contains("public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException");
         assertThat(stringList).contains("public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException");
         assertThat(stringList).contains("public final void java.lang.Object.wait() throws java.lang.InterruptedException");

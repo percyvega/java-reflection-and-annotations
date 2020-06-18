@@ -1,4 +1,4 @@
-package com.percyvega;
+package com.percyvega.reflection;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log4j2
-public class S24_ClassObject {
+public class ClassTest {
 
     @Test
     void waysOfObtainingAClassReference() throws ClassNotFoundException {
