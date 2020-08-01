@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ConstructorTest {
 
     @Test
-    void obtain_public_and_private_direct_constructors() {
+    void obtain_public_and_private_own_constructors() {
         Constructor<?>[] declaredConstructors = MyClass.class.getDeclaredConstructors();
         List<String> stringList = Arrays.stream(declaredConstructors)
                 .map(Constructor::toString)
@@ -28,7 +28,7 @@ public class ConstructorTest {
     }
 
     @Test
-    void obtain_public_direct_constructors() {
+    void obtain_public_own_constructors() {
         Constructor<?>[] constructors = MyClass.class.getConstructors();
         List<String> stringList = Arrays.stream(constructors)
                 .map(Constructor::toString)
@@ -40,7 +40,7 @@ public class ConstructorTest {
     }
 
     @Test
-    void change_private_constructor_to_public_constructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    void change_private_constructor_to_public_constructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Constructor<?> declaredConstructor = MyClass.class.getDeclaredConstructor();
         declaredConstructor.setAccessible(true);
         MyClass myClass = (MyClass) declaredConstructor.newInstance();

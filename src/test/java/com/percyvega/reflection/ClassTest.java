@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ClassTest {
 
     @Test
-    void waysOfObtainingAClassReference() throws ClassNotFoundException {
+    void obtaining_a_class_reference() throws ClassNotFoundException {
         Class<?> aClass1 = Class.forName(MyClass.class.getName());
         Class<?> aClass2 = MyClass.class;
         Class<?> aClass3 = new MyClass().getClass();
@@ -19,10 +19,13 @@ public class ClassTest {
     }
 
     @Test
-    void obtainSuperclassAndInterfaces() {
+    void get_super_class() {
         Class<?> aClassSuperclass = MyClass.class.getSuperclass();
         assertThat(aClassSuperclass.getName()).isEqualTo("java.lang.Thread");
+    }
 
+    @Test
+    void get_interfaces() {
         Class<?>[] interfaces = MyClass.class.getInterfaces();
         assertThat(interfaces.length).isEqualTo(2);
         assertThat(interfaces[0].getName()).isEqualTo("java.lang.Runnable");

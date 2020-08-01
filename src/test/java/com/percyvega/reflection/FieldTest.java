@@ -23,7 +23,7 @@ public class FieldTest {
     }
 
     @Test
-    void obtainAllPublicFields() {
+    void obtain_own_and_inherited_public_fields() {
         Field[] fields = MyHuman.class.getFields();
 
         assertThat(fields).hasSize(2);
@@ -42,7 +42,7 @@ public class FieldTest {
     }
 
     @Test
-    void obtainAllFields() {
+    void obtain_public_and_private_own_fields() {
         Field[] declaredFields = MyHuman.class.getDeclaredFields();
 
         List<String> stringList = Arrays.stream(declaredFields)

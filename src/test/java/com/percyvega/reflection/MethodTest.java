@@ -16,24 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MethodTest {
 
     @Test
-    void obtain_public_and_private_direct_class_methods() {
-        Method[] declaredMethods = MyPet.class.getDeclaredMethods();
-
-        List<String> stringList = Arrays.stream(declaredMethods)
-                .map(Method::toString)
-                .collect(Collectors.toList());
-
-        assertThat(stringList).contains("static int com.percyvega.reflection.MethodTest$MyPet.access$000(com.percyvega.reflection.MethodTest$MyPet)");
-        assertThat(stringList).contains("public void com.percyvega.reflection.MethodTest$MyPet.setPetId(int)");
-        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyPet.getMaxPetEyesCount()");
-        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyPet.getFavoritePet()");
-        assertThat(stringList).contains("private int com.percyvega.reflection.MethodTest$MyPet.getPetId()");
-
-        assertThat(stringList).hasSize(5);
-    }
-
-    @Test
-    void obtain_public_direct_and_inherited_class_methods() {
+    void obtain_public_own_and_inherited_methods() {
         Method[] methods = MyPet.class.getMethods();
 
         List<String> stringList = Arrays.stream(methods)
@@ -58,6 +41,23 @@ public class MethodTest {
         assertThat(stringList).contains("public final native java.lang.Class java.lang.Object.getClass()");
         assertThat(stringList).contains("public final native void java.lang.Object.notify()");
         assertThat(stringList).contains("public final native void java.lang.Object.notifyAll()");
+    }
+
+    @Test
+    void obtain_public_and_private_own_methods() {
+        Method[] declaredMethods = MyPet.class.getDeclaredMethods();
+
+        List<String> stringList = Arrays.stream(declaredMethods)
+                .map(Method::toString)
+                .collect(Collectors.toList());
+
+        assertThat(stringList).contains("static int com.percyvega.reflection.MethodTest$MyPet.access$000(com.percyvega.reflection.MethodTest$MyPet)");
+        assertThat(stringList).contains("public void com.percyvega.reflection.MethodTest$MyPet.setPetId(int)");
+        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyPet.getMaxPetEyesCount()");
+        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyPet.getFavoritePet()");
+        assertThat(stringList).contains("private int com.percyvega.reflection.MethodTest$MyPet.getPetId()");
+
+        assertThat(stringList).hasSize(5);
     }
 
     @Test
