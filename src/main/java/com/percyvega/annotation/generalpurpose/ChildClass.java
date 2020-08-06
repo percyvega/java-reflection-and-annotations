@@ -1,30 +1,11 @@
-package com.percyvega.annotation;
+package com.percyvega.annotation.generalpurpose;
 
 import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
 
-public class GeneralPurposeAnnotationsExample {
-}
-
 @Log4j2
-@SuppressWarnings("all")
-class Parent {
-
-    //    @SuppressWarnings("unused")
-    public void method1() {
-        log.info("Parent method1() running");
-    }
-
-    @Deprecated
-    public void method2(int a) {
-        log.info("Parent method2(int a) running. a = " + a);
-    }
-
-}
-
-@Log4j2
-class ChildClass extends Parent {
+public class ChildClass extends ParentClass {
 
     @Override
     public void method1() {
