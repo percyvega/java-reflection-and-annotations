@@ -1,4 +1,4 @@
-package com.percyvega.reflection;
+package com.percyvega.reflection.clazz;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ public class ClassTest {
 
     @Test
     void obtaining_a_class_reference() throws ClassNotFoundException {
-        Class<?> aClass1 = Class.forName("com.percyvega.reflection.ClassTest$MyClass"); // use when dynamically linked (class not present during compilation)
+        Class<?> aClass1 = Class.forName("com.percyvega.reflection.clazz.MyClass"); // use when dynamically linked (class not present during compilation)
         Class<?> aClass2 = MyClass.class;
         Class<?> aClass3 = new MyClass().getClass(); // use when you already have an instance of the class
 
@@ -30,9 +30,6 @@ public class ClassTest {
         assertThat(interfaces.length).isEqualTo(2);
         assertThat(interfaces[0].getName()).isEqualTo("java.lang.Runnable");
         assertThat(interfaces[1].getName()).isEqualTo("java.lang.Cloneable");
-    }
-
-    static class MyClass extends Thread implements Runnable, Cloneable {
     }
 
 }

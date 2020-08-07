@@ -1,4 +1,4 @@
-package com.percyvega.reflection;
+package com.percyvega.reflection.modifiers;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -16,11 +16,11 @@ public class ModifiersTest {
     void class_modifiers() {
         final int modifiers = MyClass.class.getModifiers();
 
-        assertThat(modifiers & Modifier.PUBLIC).isZero();
+        assertThat(modifiers & Modifier.PUBLIC).isOne();
 
-        assertThat(Modifier.isPublic(modifiers)).isFalse();
+        assertThat(Modifier.isPublic(modifiers)).isTrue();
 
-        assertThat(Modifier.toString(modifiers)).isEqualTo("static");
+        assertThat(Modifier.toString(modifiers)).isEqualTo("public");
     }
 
     @Test
@@ -29,10 +29,10 @@ public class ModifiersTest {
 
         int modifiers = constructor.getModifiers();
 
-        assertThat(Modifier.isPublic(modifiers)).isFalse();
-        assertThat(Modifier.isPrivate(modifiers)).isTrue();
+        assertThat(Modifier.isPublic(modifiers)).isTrue();
+        assertThat(Modifier.isPrivate(modifiers)).isFalse();
 
-        assertThat(Modifier.toString(modifiers)).isEqualTo("private");
+        assertThat(Modifier.toString(modifiers)).isEqualTo("public");
     }
 
     @Test
@@ -41,21 +41,10 @@ public class ModifiersTest {
 
         int modifiers = setId.getModifiers();
 
-        assertThat(Modifier.isPrivate(modifiers)).isTrue();
+        assertThat(Modifier.isPrivate(modifiers)).isFalse();
         assertThat(Modifier.isStatic(modifiers)).isTrue();
 
-        assertThat(Modifier.toString(modifiers)).isEqualTo("private static");
-    }
-
-    static class MyClass {
-        private static long id;
-
-        private MyClass() {
-        }
-
-        private static void setId(long _id) {
-            id = _id;
-        }
+        assertThat(Modifier.toString(modifiers)).isEqualTo("public static");
     }
 
 }

@@ -1,4 +1,4 @@
-package com.percyvega.reflection;
+package com.percyvega.reflection.constructor;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,8 @@ public class ConstructorTest {
                 .map(Constructor::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).contains("private com.percyvega.reflection.ConstructorTest$MyClass()");
-        assertThat(stringList).contains("public com.percyvega.reflection.ConstructorTest$MyClass(java.lang.String)");
+        assertThat(stringList).contains("private com.percyvega.reflection.constructor.MyClass()");
+        assertThat(stringList).contains("public com.percyvega.reflection.constructor.MyClass(java.lang.String)");
 
         assertThat(stringList).hasSize(2);
     }
@@ -34,7 +34,7 @@ public class ConstructorTest {
                 .map(Constructor::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).contains("public com.percyvega.reflection.ConstructorTest$MyClass(java.lang.String)");
+        assertThat(stringList).contains("public com.percyvega.reflection.constructor.MyClass(java.lang.String)");
 
         assertThat(stringList).hasSize(1);
     }
@@ -46,28 +46,7 @@ public class ConstructorTest {
         MyClass myClass = (MyClass) declaredConstructor.newInstance();
 
         assertThat(myClass).isInstanceOf(MyClass.class);
-        assertThat(myClass.getClass().getName()).isEqualTo("com.percyvega.reflection.ConstructorTest$MyClass");
+        assertThat(myClass.getClass().getName()).isEqualTo("com.percyvega.reflection.constructor.MyClass");
     }
 
-    // This inner class has to be static because it's a field of the outer class
-    //      and we don't want to instantiate the outer class to use/access it.
-    private static class MyClass extends MySuperClass {
-        private MyClass() {
-            log.info(MyClass.class + " has been initialized!");
-        }
-
-        public MyClass(String s) {
-            log.info(MyClass.class + " has been initialized with a String constructor parameter of " + s);
-        }
-    }
-
-    private static class MySuperClass {
-        public MySuperClass() {
-            log.info(MySuperClass.class + "has been initialized!");
-        }
-
-        public MySuperClass(int i) {
-            log.info(MySuperClass.class + "has been initialized with a int constructor parameter of " + i);
-        }
-    }
 }

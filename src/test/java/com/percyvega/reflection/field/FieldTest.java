@@ -1,5 +1,8 @@
-package com.percyvega.reflection;
+package com.percyvega.reflection.field;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,11 +52,10 @@ public class FieldTest {
                 .map(Field::getName)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).hasSize(3);
+        assertThat(stringList).hasSize(2);
 
         assertThat(stringList).contains("age");
         assertThat(stringList).contains("lastname");
-        assertThat(stringList).contains("this$0");
     }
 
     @Test
@@ -77,67 +79,5 @@ public class FieldTest {
         assertThat(myHumanInstance.getAge()).isEqualTo(23);
     }
 
-    class MyHuman extends MyLivingBeingClass {
-
-        private int age;
-        public String lastname;
-
-        public MyHuman() {
-            setSpecies("human");
-        }
-
-        public MyHuman(int age, String lastname) {
-            this();
-            this.age = age;
-            this.lastname = lastname;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
-
-        public String getLastname() {
-            return lastname;
-        }
-
-        public void setLastname(String lastname) {
-            this.lastname = lastname;
-        }
-
-        @Override
-        public String toString() {
-            return "MyHumanClass{" +
-                    "age=" + age +
-                    ", lastname='" + lastname + '\'' +
-                    ", id=" + getId() +
-                    ", species='" + getSpecies() + '\'' +
-                    '}';
-        }
-    }
-
-    class MyLivingBeingClass {
-        private Long id;
-        public String species;
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getSpecies() {
-            return species;
-        }
-
-        public void setSpecies(String species) {
-            this.species = species;
-        }
-    }
-
 }
+

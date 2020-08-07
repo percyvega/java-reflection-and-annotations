@@ -1,4 +1,4 @@
-package com.percyvega.reflection;
+package com.percyvega.reflection.method;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -23,15 +23,16 @@ public class MethodTest {
                 .map(Method::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).hasSize(14);
+        assertThat(stringList).hasSize(15);
 
-        assertThat(stringList).doesNotContain("public void com.percyvega.reflection.MethodTest$MyPet.getPetId()"); // not found because it is not public
+        // not found because it is not public
+        assertThat(stringList).doesNotContain("public void com.percyvega.reflection.method.MyPet.getPetId()");
+        assertThat(stringList).doesNotContain("public void com.percyvega.reflection.method.MyPet.getPetId()");
 
-        assertThat(stringList).contains("public void com.percyvega.reflection.MethodTest$MyPet.setPetId(int)");
-        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyPet.getMaxPetEyesCount()");
-        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyPet.getFavoritePet()");
-        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyAnimal.getMaxAnimalEyesCount()");
-        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyAnimal.getFavoriteAnimal()");
+        assertThat(stringList).contains("public int com.percyvega.reflection.method.MyPet.getMaxPetEyesCount()");
+        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.method.MyPet.getFavoritePet()");
+        assertThat(stringList).contains("public int com.percyvega.reflection.method.MyAnimal.getMaxAnimalEyesCount()");
+        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.method.MyAnimal.getFavoriteAnimal()");
         assertThat(stringList).contains("public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException");
         assertThat(stringList).contains("public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException");
         assertThat(stringList).contains("public final void java.lang.Object.wait() throws java.lang.InterruptedException");
@@ -51,13 +52,12 @@ public class MethodTest {
                 .map(Method::toString)
                 .collect(Collectors.toList());
 
-        assertThat(stringList).contains("static int com.percyvega.reflection.MethodTest$MyPet.access$000(com.percyvega.reflection.MethodTest$MyPet)");
-        assertThat(stringList).contains("public void com.percyvega.reflection.MethodTest$MyPet.setPetId(int)");
-        assertThat(stringList).contains("public int com.percyvega.reflection.MethodTest$MyPet.getMaxPetEyesCount()");
-        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.MethodTest$MyPet.getFavoritePet()");
-        assertThat(stringList).contains("private int com.percyvega.reflection.MethodTest$MyPet.getPetId()");
+        assertThat(stringList).contains("public com.percyvega.reflection.method.MyPet com.percyvega.reflection.method.MyPet.setPetId(int)");
+        assertThat(stringList).contains("public int com.percyvega.reflection.method.MyPet.getPetId()");
+        assertThat(stringList).contains("public static java.lang.String com.percyvega.reflection.method.MyPet.getFavoritePet()");
+        assertThat(stringList).contains("public int com.percyvega.reflection.method.MyPet.getMaxPetEyesCount()");
 
-        assertThat(stringList).hasSize(5);
+        assertThat(stringList).hasSize(4);
     }
 
     @Test
@@ -75,37 +75,4 @@ public class MethodTest {
         assertThat(animalId).isBetween(0, 9);
     }
 
-    static class MyPet extends MyAnimal {
-        private int petId = new Random().nextInt(1000);
-
-        public void setPetId(int petId) {
-            this.petId = petId;
-        }
-
-        private int getPetId() {
-            return petId;
-        }
-
-        public static String getFavoritePet() {
-            return "Dog";
-        }
-
-        public int getMaxPetEyesCount() {
-            return 8;
-        }
-    }
-
-    static class MyAnimal {
-        private int getAnimalId() {
-            return new Random().nextInt(10);
-        }
-
-        public static String getFavoriteAnimal() {
-            return "Lion";
-        }
-
-        public int getMaxAnimalEyesCount() {
-            return 100;
-        }
-    }
 }
